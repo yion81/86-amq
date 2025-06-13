@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Made in Abyss AMQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="addons.css"/>
+</head>
+<body class="relative min-h-screen text-gray-100 p-5 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" style="background-image: url('wallp/3ak2hwf1wlyc1.jpeg');"></div>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 z-0 bg-black bg-opacity-85"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen">
+        <div class="container max-w-2xl w-full text-center">
+            <body class="bg-black text-gray-100 min-h-screen flex flex-col items-center justify-center p-5">
+                <div class="container max-w-2xl w-full text-center">
+                    <h1 class="text-4xl font-bold text-blue-200 mb-8">mia AMQ</h1>
+                    
+                    <!-- Start Screen -->
+                    <div id="start-screen">
+                        <button id="start-btn" class="bg-transparent hover:bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            pley (real)
+                        </button>
+                    </div>
+                    
+                    <!-- Quiz Screen -->
+                    <div id="quiz-screen" class="hidden w-full">
+                        <div class="track-info my-6 min-h-[60px]">
+                            <div id="anime-comparison" class="answer-comparison hidden text-lg">
+                                <div>Anime: <span class="text-gray-300" id="user-anime-answer"></span> / <span class="text-green-400 font-medium" id="actual-anime"></span></div>
+                            </div>
+                            
+                            <div id="song-comparison" class="answer-comparison hidden text-lg mt-2">
+                                <div>Song: <span class="text-gray-300" id="user-song-answer"></span> / <span class="text-green-400 font-medium" id="actual-song"></span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-player my-6 w-full">
+                            <audio id="audio-element" controls autoplay class="w-full max-w-md mx-auto"></audio>
+                        </div>
+                        
+                        <div class="progress text-gray-400 mb-6">
+                            Question <span id="current-question" class="text-white">1</span> of <span id="total-questions" class="text-white">5</span>
+                        </div>
+                        
+                        <!-- Anime Question -->
+                        <div id="anime-question" class="question mb-8">
+                            <h3 class="text-xl font-medium mb-4">Which mia?</h3>
+                            <div class="option-container max-w-md mx-auto space-y-3">
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss">Made in Abyss</div>
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss: Dawn of the Deep Soul">Made in Abyss: Dawn of the Deep Soul</div>
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss: The Golden City of the Scorching Sun">Made in Abyss: The Golden City of the Scorching Sun</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Song Question -->
+                        <div id="song-question" class="question hidden mb-8">
+                            <h3 class="text-xl font-medium mb-4">Song title?</h3>
+                            <div class="input-container max-w-md mx-auto relative">
+                                <input type="text" id="song-input" placeholder="Enter song title..." autocomplete="off" 
+                                       class="w-full bg-black border border-gray-700 rounded-full px-4 py-3 text-white">
+                                <div class="flex justify-center mt-3 space-x-3">
+                                    <button id="skip-song-btn" class="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm transition-colors">
+                                        Skip (I forgor 💀)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="next-btn" class="next-btn hidden bg-gray-800 hover:bg-gray-600 text-white px-6 py-2 rounded-full font-medium mt-4 transition-colors">
+                            Next Question
+                        </button>
+                    </div>
+                    
+                    <!-- Results Screen -->
+                    <div id="results-screen" class="hidden">
+                        <h2 class="text-3xl font-bold mb-6">Quiz Complete!</h2>
+                        <div class="score-display text-2xl mb-8">
+                            Final Score: <span id="final-score" class="text-green-400 font-bold">0</span>/<span id="max-score" class="font-bold">0</span>
+                        </div>
+                        <button id="play-again-btn" class="bg-gray-800 hover:bg-green-500 text-white px-6 py-3 rounded-full font-medium transition-colors">
+                            Play Again?
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+
+
+    <script src="backend.js">
+    </script>
+</body>
+</html>

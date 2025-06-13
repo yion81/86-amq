@@ -1,0 +1,30 @@
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.pulse:hover {
+    animation: pulse 1.5s infinite;
+}
+
+.option-box {
+    transition: all 0.2s ease;
+}
+
+.option-box:hover {
+    transform: translateY(-2px);
+}
+
+.selected {
+    box-shadow: 0 0 0 0px rgba(74, 222, 128, 0.5);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0px rgba(74, 222, 128, 0.3);
+}
+
+audio::-webkit-media-controls-time-remaining-display,
+  audio::-webkit-media-controls-current-time-display {
+    display: none !important;
+  }

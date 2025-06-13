@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eighty Six AMQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="addons.css"/>
+</head>
+<body class="relative min-h-screen text-gray-100 p-5 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" style="background-image: url('wallp/3ak2hwf1wlyc1.jpeg');"></div>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 z-0 bg-black bg-opacity-85"></div>
+
+    <div class="absolute top-2 left-4 z-20 text-gray-300 text-sm opacity-80 hover:opacity-100 transition-opacity">
+        <div class="flex flex-col space-y-1">
+            <span>if something is wrong:</span>
+            <div class="flex items-center">
+                <img src="wallp/a3362f7695a6ec091e7cf173d98e5ease.jpg" class="w-10 h-10 rounded-full object-cover mr-2">
+                <span>Discord: yion81_</span>
+            </div>
+            <div class="flex items-center">
+                <div class="w-2 h-2 rounded-full bg-blue-400 mr-2"></div>
+                <a href="https://github.com/yion81" target="_blank" class="text-gray-300 hover:text-white transition-colors">Github: yion81</a>
+            </div>
+            <!-- <div>
+                <a href="https://github.com/yion81" target="_blank" class="text-gray-300 hover:text-white transition-colors">Github: yion81</a>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen">
+        <div class="container max-w-2xl w-full text-center">
+            <body class="bg-black text-gray-100 min-h-screen flex flex-col items-center justify-center p-5">
+                <div class="container max-w-2xl w-full text-center">
+                    <h1 class="text-4xl font-bold text-blue-200 mb-2">mia AMQ</h1>
+                    <div id="current-score-display" class="text-xl text-green-400 mb-6 hidden">
+                        Score: <span id="current-score">0</span>
+                    </div>
+                    
+                    <!-- Start Screen -->
+                    <div id="start-screen">
+                        <button id="start-btn" class="bg-transparent hover:bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            pley (real)
+                        </button>
+                    </div>
+                    
+                    <!-- Quiz Screen -->
+                    <div id="quiz-screen" class="hidden w-full">
+                        <div class="flex justify-end mb-4">
+                            <button id="end-quiz-btn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm transition-colors">
+                                End Quiz
+                            </button>
+                        </div>
+                        <div class="track-info my-6 min-h-[60px]">
+                            <div id="anime-comparison" class="answer-comparison hidden text-lg">
+                                <div>Anime: <span class="text-gray-300" id="user-anime-answer"></span> / <span class="text-green-400 font-medium" id="actual-anime"></span></div>
+                            </div>
+                            
+                            <div id="song-comparison" class="answer-comparison hidden text-lg mt-2">
+                                <div>Song: <span class="text-gray-300" id="user-song-answer"></span> / <span class="text-green-400 font-medium" id="actual-song"></span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="audio-player my-6 w-full">
+                            <audio id="audio-element" controls autoplay class="hidden"></audio>
+                            <div class="custom-audio-player">
+                                <div class="custom-audio-controls">
+                                    <button class="custom-play-btn" id="custom-play-btn">
+                                        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white hidden" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div class="custom-progress-container" id="custom-progress-container">
+                                        <div class="custom-progress-bar" id="custom-progress-bar"></div>
+                                    </div>
+                                    <div class="custom-volume-container">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 a1 1 0 010-1.415z" clip-rule="evenodd" />
+                                        </svg>
+                                        <input type="range" min="0" max="1" step="0.01" value="0.5" class="custom-volume-slider" id="custom-volume-slider">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress text-gray-400 mb-6">
+                            Question <span id="current-question" class="text-white">1</span> of <span id="total-questions" class="text-white">5</span>
+                        </div>
+                        
+                        <!-- Anime Question -->
+                        <div id="anime-question" class="question mb-8">
+                            <h3 class="text-xl font-medium mb-4">Which mia?</h3>
+                            <div class="option-container max-w-md mx-auto space-y-3">
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss">Made in Abyss</div>
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss: Dawn of the Deep Soul">Made in Abyss: Dawn of the Deep Soul</div>
+                                <div class="option-box bg-black p-4 rounded-lg cursor-pointer hover:bg-gray-700" data-value="Made in Abyss: The Golden City of the Scorching Sun">Made in Abyss: The Golden City of the Scorching Sun</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Song Question -->
+                        <div id="song-question" class="question hidden mb-8">
+                            <h3 class="text-xl font-medium mb-4">Song title?</h3>
+                            <div class="input-container max-w-md mx-auto relative">
+                                <div class="autocomplete">
+                                    <input type="text" id="song-input" placeholder="Enter song title..." autocomplete="off" 
+                                           class="w-full bg-black border border-gray-700 rounded-full px-4 py-3 text-white">
+                                    <div id="autocomplete-list" class="autocomplete-items"></div>
+                                </div>
+                                <div class="flex justify-center mt-3 space-x-3">
+                                    <button id="skip-song-btn" class="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm transition-colors">
+                                        Skip (I forgor 💀)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="next-btn" class="next-btn hidden bg-gray-800 hover:bg-gray-600 text-white px-6 py-2 rounded-full font-medium mt-4 transition-colors">
+                            Next Question
+                        </button>
+                    </div>
+                    
+                    <!-- Results Screen -->
+                    <div id="results-screen" class="hidden">
+                        <h2 class="text-3xl font-bold mb-6">wowwiez</h2>
+                        <div class="score-display text-2xl mb-8">
+                            Final Score: <span id="final-score" class="text-green-400 font-bold">0</span>/<span id="max-score" class="font-bold">0</span>
+                        </div>
+                        <button id="play-again-btn" class="bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition-colors">
+                            back to menu
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+    <script src="backend.js">
+    </script>
+</body>
+</html>
