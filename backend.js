@@ -9,7 +9,14 @@ const audioFiles = [
     { title: "THE ANSWER", file: "./86ost/THE ANSWER.mp3", anime: "Eighty Six" },
     { title: "The nameless tragedy", file: "./86ost/The nameless tragedy.mp3", anime: "Eighty Six" },
     { title: "Underneath the Sky", file: "./86ost/Underneath the Sky.mp3", anime: "Eighty Six" },
-    { title: "Voices of the Chord", file: "./86ost/Voices of the Chord.mp3", anime: "Eighty Six" }
+    { title: "Voices of the Chord", file: "./86ost/Voices of the Chord.mp3", anime: "Eighty Six" },
+    { title: "3-pun 29-byou", file: "./86ost/3-pun 29-byou.mp3", anime: "Eighty Six" },
+    { title: "Alchemilla", file: "./86ost/Alchemilla.mp3", anime: "Eighty Six" },
+    { title: "Hands Up to the Sky", file: "./86ost/Hands Up to the Sky.mp3", anime: "Eighty Six" },
+    { title: "Kyoukaisen", file: "./86ost/Kyoukaisen.mp3", anime: "Eighty Six" },
+    { title: "President me", file: "./86ost/President me.mp3", anime: "Eighty Six" },
+    { title: "SLUMDOG PARADISE", file: "./86ost/SLUMDOG PARADISE.mp3", anime: "Eighty Six" },
+    { title: "Two Worlds Apart", file: "./86ost/Two Worlds Apart.mp3", anime: "Eighty Six" }
 ];
 
 // Game state
@@ -167,7 +174,7 @@ function loadTrack() {
     audioElement.load();
     
     // initial vol
-    audioElement.volume = 0.3;
+    audioElement.volume = 0.5;
     
     // Handle audio loading
     audioElement.addEventListener('canplay', () => {
