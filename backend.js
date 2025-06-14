@@ -1,40 +1,24 @@
 // Audio files (replace with actual Made in Abyss OSTs)
 const audioFiles = [
-    { title: "Underground River", file: "miaost/Underground River.mp3", anime: "Made in Abyss" },
-    { title: "The First Layer", file: "miaost/The First Layer.mp3", anime: "Made in Abyss" },
-    { title: "Deep in Abyss", file: "miaost/Deep in Abyss.mp3", anime: "Made in Abyss" },
-    { title: "Made in Abyss", file: "miaost/Made in Abyss.mp3", anime: "Made in Abyss" },
-    { title: "Pathway", file: "miaost/Pathway.mp3", anime: "Made in Abyss" },
-    { title: "Riko's Theme", file: "miaost/Riko's Theme.mp3", anime: "Made in Abyss" },
-    { title: "Prushka Sequence", file: "miaost/Prushka Sequence.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Tozo Hanoline", file: "miaost/Tozo Hanoline.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Stingerhead Nest", file: "miaost/Stingerhead Nest.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "The Rumble of Scientific Triumph", file: "miaost/The Rumble of Scientific Triumph.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Transcendance and Hanezeve", file: "miaost/Transcendance and Hanezeve.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "reBirth", file: "miaost/reBirth.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Stairway to the Fifth", file: "miaost/Stairway to the Fifth.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Forever Lost", file: "miaost/Forever Lost.mp3", anime: "Made in Abyss: Dawn of the Deep Soul" },
-    { title: "Old Stories", file: "miaost/Old Stories.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Gravity", file: "miaost/Gravity.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "VOH", file: "miaost/VOH.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Nature Sequence 6th Layer", file: "miaost/Nature Sequence 6th layer.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Tomorrow Land", file: "miaost/Tomorrow land.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Vueko", file: "miaost/Vueko.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Eyes of Irumyuui", file: "miaost/Eyes of Irumyuui.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Katachi", file: "miaost/Katachi.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Endless Embrace", file: "miaost/Endless Embrace.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" },
-    { title: "Faputa", file: "miaost/Faputa.mp3", anime: "Made in Abyss: The Golden City of the Scorching Sun" }
+    { title: "Avid", file: "./86ost/Avid.mp3", anime: "Eighty Six" },
+    { title: "EIGHTY-SIX", file: "./86ost/EIGHTY-SIX.mp3", anime: "Eighty Six" },
+    { title: "Hear my voice", file: "./86ost/Hear my voice.mp3", anime: "Eighty Six" },
+    { title: "Lilas", file: "./86ost/Lilas.mp3", anime: "Eighty Six" },
+    { title: "Piano Eightysix-Four", file: "./86ost/Piano Eightysix-Four.mp3", anime: "Eighty Six" },
+    { title: "Shin", file: "./86ost/Shin.mp3", anime: "Eighty Six" },
+    { title: "THE ANSWER", file: "./86ost/THE ANSWER.mp3", anime: "Eighty Six" },
+    { title: "The nameless tragedy", file: "./86ost/The nameless tragedy.mp3", anime: "Eighty Six" },
+    { title: "Underneath the Sky", file: "./86ost/Underneath the Sky.mp3", anime: "Eighty Six" },
+    { title: "Voices of the Chord", file: "./86ost/Voices of the Chord.mp3", anime: "Eighty Six" }
 ];
 
 // Game state
 let gameState = {
     currentTrack: 0,
     score: 0,
-    maxScore: audioFiles.length * 2,
+    maxScore: audioFiles.length,
     shuffledTracks: [],
-    animeAnswered: false,
     songAnswered: false,
-    selectedAnime: null,
     songSkipped: false
 };
 
@@ -48,20 +32,15 @@ const endQuizBtn = document.getElementById('end-quiz-btn');
 const audioElement = document.getElementById('audio-element');
 const currentQuestionDisplay = document.getElementById('current-question');
 const totalQuestionsDisplay = document.getElementById('total-questions');
-const animeQuestion = document.getElementById('anime-question');
 const songQuestion = document.getElementById('song-question');
 const songInput = document.getElementById('song-input');
 const skipSongBtn = document.getElementById('skip-song-btn');
 const nextBtn = document.getElementById('next-btn');
 const finalScoreDisplay = document.getElementById('final-score');
 const maxScoreDisplay = document.getElementById('max-score');
-const actualAnimeDisplay = document.getElementById('actual-anime');
-const userAnimeAnswer = document.getElementById('user-anime-answer');
 const actualSongDisplay = document.getElementById('actual-song');
 const userSongAnswer = document.getElementById('user-song-answer');
-const animeComparison = document.getElementById('anime-comparison');
 const songComparison = document.getElementById('song-comparison');
-const optionBoxes = document.querySelectorAll('.option-box');
 const autocompleteList = document.getElementById('autocomplete-list');
 const currentScoreDisplay = document.getElementById('current-score-display');
 const currentScoreElement = document.getElementById('current-score');
@@ -80,11 +59,6 @@ playAgainBtn.addEventListener('click', resetGame);
 nextBtn.addEventListener('click', nextQuestion);
 skipSongBtn.addEventListener('click', skipSong);
 endQuizBtn.addEventListener('click', endQuiz);
-
-// Add click handlers for option boxes
-optionBoxes.forEach(box => {
-    box.addEventListener('click', handleAnimeSelection);
-});
 
 // Handle song input on Enter key
 songInput.addEventListener('keyup', function(e) {
@@ -172,37 +146,43 @@ function loadTrack() {
     const track = gameState.shuffledTracks[gameState.currentTrack];
     
     // Reset UI for new question
-    animeQuestion.classList.remove('hidden');
-    songQuestion.classList.add('hidden');
+    songQuestion.classList.remove('hidden');
     nextBtn.classList.add('hidden');
     songInput.value = '';
-    animeComparison.classList.add('hidden');
     songComparison.classList.add('hidden');
     autocompleteList.innerHTML = '';
     
-    // Reset option boxes
-    optionBoxes.forEach(box => {
-        box.classList.remove('selected');
-    });
-    
-    gameState.animeAnswered = false;
     gameState.songAnswered = false;
-    gameState.selectedAnime = null;
     gameState.songSkipped = false;
     
     // Update progress
     currentQuestionDisplay.textContent = gameState.currentTrack + 1;
     
     // Set actual track info (hidden until answered)
-    actualAnimeDisplay.textContent = track.anime;
+    // actualAnimeDisplay.textContent = track.anime;
     actualSongDisplay.textContent = track.title;
     
     // Load audio
     audioElement.src = track.file;
-
+    audioElement.load();
+    
     // initial vol
-    audioElement.volume = 0.4;
-    audioElement.play().catch(e => console.log("Auto-play prevented:", e));
+    audioElement.volume = 0.3;
+    
+    // Handle audio loading
+    audioElement.addEventListener('canplay', () => {
+        audioElement.play().catch(e => {
+            console.log("Auto-play prevented:", e);
+            // Show play button if autoplay blocked
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        });
+    });
+    
+    audioElement.addEventListener('error', (e) => {
+        console.error("Audio error:", e);
+        alert(`Error loading audio: ${track.title}. Please check the file path.`);
+    });
 }
 
 // Handle anime selection
@@ -287,6 +267,7 @@ function nextQuestion() {
         loadTrack();
     } else {
         // Game over
+        audioElement.pause();
         quizScreen.classList.add('hidden');
         resultsScreen.classList.remove('hidden');
         finalScoreDisplay.textContent = gameState.score;
